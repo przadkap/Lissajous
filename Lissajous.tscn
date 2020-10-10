@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Lissajous1.gd" type="Script" id=1]
-[ext_resource path="res://Slider Panel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://aSlider.gd" type="Script" id=2]
+[ext_resource path="res://RotationTimer.gd" type="Script" id=3]
+[ext_resource path="res://phiSlider.gd" type="Script" id=4]
+[ext_resource path="res://bSlider.gd" type="Script" id=5]
+[ext_resource path="res://B_Slider.gd" type="Script" id=6]
+[ext_resource path="res://A_Slider.gd" type="Script" id=7]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -30,9 +35,17 @@ custom_constants/margin_bottom = 20
 curve = SubResource( 1 )
 script = ExtResource( 1 )
 
-[node name="Sliders" type="MarginContainer" parent="."]
+[node name="RotationTimer" type="Timer" parent="Curve Image/Path2D"]
+script = ExtResource( 3 )
+
+[node name="VSeparator" type="VSeparator" parent="."]
 margin_left = 532.0
-margin_right = 1044.0
+margin_right = 536.0
+margin_bottom = 600.0
+
+[node name="Sliders" type="MarginContainer" parent="."]
+margin_left = 556.0
+margin_right = 1068.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 512, 0 )
 custom_constants/margin_right = 20
@@ -46,44 +59,166 @@ margin_top = 20.0
 margin_right = 492.0
 margin_bottom = 580.0
 
-[node name="a Slider Panel" parent="Sliders/Slider List" instance=ExtResource( 2 )]
+[node name="a Slider Panel" type="PanelContainer" parent="Sliders/Slider List"]
+margin_right = 472.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="b Slider Panel" parent="Sliders/Slider List" instance=ExtResource( 2 )]
+[node name="VBoxContainer" type="VBoxContainer" parent="Sliders/Slider List/a Slider Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 465.0
+margin_bottom = 41.0
+
+[node name="Label" type="Label" parent="Sliders/Slider List/a Slider Panel/VBoxContainer"]
+margin_right = 458.0
+margin_bottom = 14.0
+text = "a"
+
+[node name="Slider" type="HSlider" parent="Sliders/Slider List/a Slider Panel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 458.0
+margin_bottom = 34.0
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+script = ExtResource( 2 )
+
+[node name="b Slider Panel" type="PanelContainer" parent="Sliders/Slider List"]
 margin_top = 52.0
+margin_right = 472.0
 margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" parent="Sliders/Slider List/b Slider Panel/VBoxContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Sliders/Slider List/b Slider Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 465.0
+margin_bottom = 41.0
+
+[node name="Label" type="Label" parent="Sliders/Slider List/b Slider Panel/VBoxContainer"]
+margin_right = 458.0
+margin_bottom = 14.0
 text = "b"
 
-[node name="A Slider Panel" parent="Sliders/Slider List" instance=ExtResource( 2 )]
-margin_top = 104.0
-margin_bottom = 152.0
+[node name="Slider" type="HSlider" parent="Sliders/Slider List/b Slider Panel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 458.0
+margin_bottom = 34.0
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+script = ExtResource( 5 )
 
-[node name="Label" parent="Sliders/Slider List/A Slider Panel/VBoxContainer" index="0"]
+[node name="A Slider Panel" type="PanelContainer" parent="Sliders/Slider List"]
+margin_top = 104.0
+margin_right = 472.0
+margin_bottom = 152.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sliders/Slider List/A Slider Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 465.0
+margin_bottom = 41.0
+
+[node name="Label" type="Label" parent="Sliders/Slider List/A Slider Panel/VBoxContainer"]
+margin_right = 458.0
+margin_bottom = 14.0
 text = "A"
 
-[node name="Slider" parent="Sliders/Slider List/A Slider Panel/VBoxContainer" index="1"]
+[node name="Slider" type="HSlider" parent="Sliders/Slider List/A Slider Panel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 458.0
+margin_bottom = 34.0
+min_value = 1.0
 max_value = 200.0
+value = 1.0
+script = ExtResource( 7 )
 
-[node name="B Slider Panel" parent="Sliders/Slider List" instance=ExtResource( 2 )]
+[node name="B Slider Panel" type="PanelContainer" parent="Sliders/Slider List"]
 margin_top = 156.0
+margin_right = 472.0
 margin_bottom = 204.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" parent="Sliders/Slider List/B Slider Panel/VBoxContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Sliders/Slider List/B Slider Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 465.0
+margin_bottom = 41.0
+
+[node name="Label" type="Label" parent="Sliders/Slider List/B Slider Panel/VBoxContainer"]
+margin_right = 458.0
+margin_bottom = 14.0
 text = "B"
 
-[node name="Slider" parent="Sliders/Slider List/B Slider Panel/VBoxContainer" index="1"]
+[node name="Slider" type="HSlider" parent="Sliders/Slider List/B Slider Panel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 458.0
+margin_bottom = 34.0
+min_value = 1.0
 max_value = 200.0
+value = 1.0
+script = ExtResource( 6 )
+
+[node name="phi Slider Panel" type="PanelContainer" parent="Sliders/Slider List"]
+margin_top = 208.0
+margin_right = 472.0
+margin_bottom = 300.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sliders/Slider List/phi Slider Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 465.0
+margin_bottom = 85.0
+
+[node name="Label" type="Label" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer"]
+margin_right = 458.0
+margin_bottom = 14.0
+text = "phi"
+
+[node name="Slider" type="HSlider" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 458.0
+margin_bottom = 34.0
+max_value = 2.0
+step = 0.01
+script = ExtResource( 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer"]
+margin_top = 38.0
+margin_right = 458.0
+margin_bottom = 78.0
+
+[node name="Label" type="Label" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer/HBoxContainer"]
+margin_top = 13.0
+margin_right = 46.0
+margin_bottom = 27.0
+text = "Moving"
+
+[node name="CheckButton" type="CheckButton" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer/HBoxContainer"]
+margin_left = 50.0
+margin_right = 126.0
+margin_bottom = 40.0
+[connection signal="A_changed" from="Curve Image/Path2D" to="Sliders/Slider List/A Slider Panel/VBoxContainer/Slider" method="_on_Path2D_A_changed"]
+[connection signal="B_changed" from="Curve Image/Path2D" to="Sliders/Slider List/B Slider Panel/VBoxContainer/Slider" method="_on_Path2D_B_changed"]
+[connection signal="a_changed" from="Curve Image/Path2D" to="Sliders/Slider List/a Slider Panel/VBoxContainer/Slider" method="_on_Path2D_a_changed"]
+[connection signal="b_changed" from="Curve Image/Path2D" to="Sliders/Slider List/b Slider Panel/VBoxContainer/Slider" method="_on_Path2D_b_changed"]
 [connection signal="draw" from="Curve Image/Path2D" to="Curve Image/Path2D" method="_on_Path2D_draw"]
+[connection signal="phi_changed" from="Curve Image/Path2D" to="Sliders/Slider List/phi Slider Panel/VBoxContainer/Slider" method="_on_Path2D_phi_changed"]
+[connection signal="timeout" from="Curve Image/Path2D/RotationTimer" to="Curve Image/Path2D" method="_on_RotationTimer_timeout"]
 [connection signal="value_changed" from="Sliders/Slider List/a Slider Panel/VBoxContainer/Slider" to="Curve Image/Path2D" method="_on_Slider1_value_changed"]
 [connection signal="value_changed" from="Sliders/Slider List/b Slider Panel/VBoxContainer/Slider" to="Curve Image/Path2D" method="_on_Slider2_value_changed"]
 [connection signal="value_changed" from="Sliders/Slider List/A Slider Panel/VBoxContainer/Slider" to="Curve Image/Path2D" method="_on_Slider3_value_changed"]
 [connection signal="value_changed" from="Sliders/Slider List/B Slider Panel/VBoxContainer/Slider" to="Curve Image/Path2D" method="_on_Slider4_value_changed"]
-
-[editable path="Sliders/Slider List/a Slider Panel"]
-
-[editable path="Sliders/Slider List/b Slider Panel"]
-
-[editable path="Sliders/Slider List/A Slider Panel"]
-
-[editable path="Sliders/Slider List/B Slider Panel"]
+[connection signal="value_changed" from="Sliders/Slider List/phi Slider Panel/VBoxContainer/Slider" to="Curve Image/Path2D" method="_on_Slider5_value_changed"]
+[connection signal="toggled" from="Sliders/Slider List/phi Slider Panel/VBoxContainer/HBoxContainer/CheckButton" to="Curve Image/Path2D/RotationTimer" method="_on_CheckButton_toggled"]

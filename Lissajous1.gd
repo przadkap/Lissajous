@@ -6,6 +6,11 @@ var b = 19
 var A = 200
 var B = 200
 
+signal phi_changed(new_phi_value)
+signal a_changed(new_a_value)
+signal b_changed(new_b_value)
+signal A_changed(new_A_value)
+signal B_changed(new_B_value)
 #var a_value
 
 var phi = PI * 0.50 # radians
@@ -42,18 +47,20 @@ func _ready():
 	for i in range(0, pointNo):
 		deltaList.append(i * pointDelta)
 	renderCurve()
+	set_sliders(param_values)
 #	_draw()
+
+func set_sliders(param_values):
+	emit_signal("A_changed", param_values["A"])
+	emit_signal("B_changed", param_values["B"])
+	emit_signal("a_changed", param_values["a"])
+	emit_signal("b_changed", param_values["b"])
+	emit_signal("phi_changed", param_values["phi"] / PI)
 
 func _draw():
 	var pointList = curve.get_baked_points()
 	pointList.append(curve.get_baked_points()[0])
 	draw_polyline(pointList, Color(255, 0, 0), 2.0)
-	print("drawing")
-#	draw_circle(pointList[0], 10, Color(0, 255, 0))
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 
 func _on_Slider1_value_changed(new_a_value):
 	param_values["a"] = new_a_value
@@ -77,3 +84,24 @@ func _on_Slider4_value_changed(new_B_value):
 	param_values["B"] = new_B_value
 	renderCurve()
 	update()
+	
+func _on_Path2D_draw():
+	pass
+
+func _on_Slider5_value_changed(new_phi_value):
+	param_values["phi"] = new_phi_value * PI
+	renderCurve()
+	update()
+
+func _on_RotationTimer_timeout():
+	param_values["phi"] = param_values["phi"] + (0.001 * PI)
+	if(param_values["phi"] > 2 * PI):
+		param_values["phi"] = 0
+	emit_signal("phi_changed", param_values["phi"] / PI)
+	renderCurve()
+	update()
+
+
+
+func _on_Path2D_A_changed(new_A_value):
+	pass # Replace with function body.
