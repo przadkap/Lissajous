@@ -15,9 +15,9 @@ signal B_changed(new_B_value)
 
 var phi = PI * 0.50 # radians
 
-var pointNo = 1000
+var POINT_NO = 1000
 
-var pointDelta = 2 * PI / pointNo
+var POINT_DELTA = 2 * PI / POINT_NO
 
 var deltaList = []
 
@@ -27,16 +27,16 @@ var deltaList = []
 var param_values = {"a": a, "b": b, "A": A, "B": B, "phi": phi}
 
 func renderCurve():
-	var relativeX = get_parent().get_rect().size.x/2
-	var relativeY = get_parent().get_rect().size.y/2
+	var relative_x = get_parent().get_rect().size.x/2
+	var relative_y = get_parent().get_rect().size.y/2
 	curve.clear_points()
-	var currentX
-	var currentY
+	var current_x
+	var current_y
 	for currentDelta in deltaList:
 		
-		currentX = (param_values["A"] * sin(param_values["a"] * currentDelta + param_values["phi"])) + relativeX
-		currentY = (param_values["B"] * sin(param_values["b"] * currentDelta)) + relativeY
-		curve.add_point(Vector2(currentX, currentY))
+		current_x = (param_values["A"] * sin(param_values["a"] * currentDelta + param_values["phi"])) + relative_x
+		current_y = (param_values["B"] * sin(param_values["b"] * currentDelta)) + relative_y
+		curve.add_point(Vector2(current_x, current_y))
 #		print(currentDelta, currentX, currentY)
 #		print(currentDelta)
 #		print(currentX)
@@ -44,13 +44,13 @@ func renderCurve():
 	
 
 func _ready():
-	for i in range(0, pointNo):
-		deltaList.append(i * pointDelta)
+	for i in range(0, POINT_NO):
+		deltaList.append(i * POINT_DELTA)
 	renderCurve()
 	set_sliders(param_values)
 #	_draw()
 
-func set_sliders(param_values):
+func set_sliders(new_param_values):
 	emit_signal("A_changed", param_values["A"])
 	emit_signal("B_changed", param_values["B"])
 	emit_signal("a_changed", param_values["a"])
