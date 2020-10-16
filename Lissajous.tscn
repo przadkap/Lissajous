@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Lissajous1.gd" type="Script" id=1]
 [ext_resource path="res://aSlider.gd" type="Script" id=2]
@@ -7,6 +7,11 @@
 [ext_resource path="res://bSlider.gd" type="Script" id=5]
 [ext_resource path="res://B_Slider.gd" type="Script" id=6]
 [ext_resource path="res://A_Slider.gd" type="Script" id=7]
+[ext_resource path="res://SpinBoxA.gd" type="Script" id=8]
+[ext_resource path="res://SpinBox_phi.gd" type="Script" id=9]
+[ext_resource path="res://SpinBox_b.gd" type="Script" id=10]
+[ext_resource path="res://SpinBoxB.gd" type="Script" id=11]
+[ext_resource path="res://SpinBox_a.gd" type="Script" id=13]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -16,7 +21,7 @@ _data = {
 [node name="GUI" type="HBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 20.0
+margin_bottom = 5.0
 custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
@@ -24,7 +29,7 @@ __meta__ = {
 
 [node name="Curve Image" type="MarginContainer" parent="."]
 margin_right = 512.0
-margin_bottom = 600.0
+margin_bottom = 605.0
 rect_min_size = Vector2( 512, 0 )
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
@@ -38,15 +43,10 @@ script = ExtResource( 1 )
 [node name="RotationTimer" type="Timer" parent="Curve Image/Path2D"]
 script = ExtResource( 3 )
 
-[node name="VSeparator" type="VSeparator" parent="."]
-margin_left = 532.0
-margin_right = 536.0
-margin_bottom = 600.0
-
 [node name="Sliders" type="MarginContainer" parent="."]
-margin_left = 556.0
-margin_right = 1068.0
-margin_bottom = 600.0
+margin_left = 532.0
+margin_right = 1044.0
+margin_bottom = 605.0
 rect_min_size = Vector2( 512, 0 )
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
@@ -57,11 +57,11 @@ custom_constants/margin_bottom = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 492.0
-margin_bottom = 580.0
+margin_bottom = 585.0
 
 [node name="a Slider Panel" type="PanelContainer" parent="Sliders/Slider List"]
 margin_right = 472.0
-margin_bottom = 48.0
+margin_bottom = 58.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -70,26 +70,40 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 465.0
-margin_bottom = 41.0
+margin_bottom = 51.0
 
-[node name="Label" type="Label" parent="Sliders/Slider List/a Slider Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Sliders/Slider List/a Slider Panel/VBoxContainer"]
 margin_right = 458.0
-margin_bottom = 14.0
-text = "a"
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Sliders/Slider List/a Slider Panel/VBoxContainer/HBoxContainer"]
+margin_top = 5.0
+margin_right = 11.0
+margin_bottom = 19.0
+text = "a:"
+
+[node name="SpinBox" type="SpinBox" parent="Sliders/Slider List/a Slider Panel/VBoxContainer/HBoxContainer"]
+margin_left = 15.0
+margin_right = 89.0
+margin_bottom = 24.0
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+script = ExtResource( 13 )
 
 [node name="Slider" type="HSlider" parent="Sliders/Slider List/a Slider Panel/VBoxContainer"]
-margin_top = 18.0
+margin_top = 28.0
 margin_right = 458.0
-margin_bottom = 34.0
+margin_bottom = 44.0
 min_value = 1.0
 max_value = 20.0
 value = 1.0
 script = ExtResource( 2 )
 
 [node name="b Slider Panel" type="PanelContainer" parent="Sliders/Slider List"]
-margin_top = 52.0
+margin_top = 62.0
 margin_right = 472.0
-margin_bottom = 100.0
+margin_bottom = 120.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -98,26 +112,40 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 465.0
-margin_bottom = 41.0
+margin_bottom = 51.0
 
-[node name="Label" type="Label" parent="Sliders/Slider List/b Slider Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Sliders/Slider List/b Slider Panel/VBoxContainer"]
 margin_right = 458.0
-margin_bottom = 14.0
-text = "b"
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Sliders/Slider List/b Slider Panel/VBoxContainer/HBoxContainer"]
+margin_top = 5.0
+margin_right = 12.0
+margin_bottom = 19.0
+text = "b:"
+
+[node name="SpinBox" type="SpinBox" parent="Sliders/Slider List/b Slider Panel/VBoxContainer/HBoxContainer"]
+margin_left = 16.0
+margin_right = 90.0
+margin_bottom = 24.0
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+script = ExtResource( 10 )
 
 [node name="Slider" type="HSlider" parent="Sliders/Slider List/b Slider Panel/VBoxContainer"]
-margin_top = 18.0
+margin_top = 28.0
 margin_right = 458.0
-margin_bottom = 34.0
+margin_bottom = 44.0
 min_value = 1.0
 max_value = 20.0
 value = 1.0
 script = ExtResource( 5 )
 
 [node name="A Slider Panel" type="PanelContainer" parent="Sliders/Slider List"]
-margin_top = 104.0
+margin_top = 124.0
 margin_right = 472.0
-margin_bottom = 152.0
+margin_bottom = 182.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -126,26 +154,40 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 465.0
-margin_bottom = 41.0
+margin_bottom = 51.0
 
-[node name="Label" type="Label" parent="Sliders/Slider List/A Slider Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Sliders/Slider List/A Slider Panel/VBoxContainer"]
 margin_right = 458.0
-margin_bottom = 14.0
-text = "A"
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Sliders/Slider List/A Slider Panel/VBoxContainer/HBoxContainer"]
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 19.0
+text = "A:"
+
+[node name="SpinBox" type="SpinBox" parent="Sliders/Slider List/A Slider Panel/VBoxContainer/HBoxContainer"]
+margin_left = 17.0
+margin_right = 91.0
+margin_bottom = 24.0
+min_value = 1.0
+max_value = 200.0
+value = 1.0
+script = ExtResource( 8 )
 
 [node name="Slider" type="HSlider" parent="Sliders/Slider List/A Slider Panel/VBoxContainer"]
-margin_top = 18.0
+margin_top = 28.0
 margin_right = 458.0
-margin_bottom = 34.0
+margin_bottom = 44.0
 min_value = 1.0
 max_value = 200.0
 value = 1.0
 script = ExtResource( 7 )
 
 [node name="B Slider Panel" type="PanelContainer" parent="Sliders/Slider List"]
-margin_top = 156.0
+margin_top = 186.0
 margin_right = 472.0
-margin_bottom = 204.0
+margin_bottom = 244.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -154,50 +196,84 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 465.0
-margin_bottom = 41.0
+margin_bottom = 51.0
 
-[node name="Label" type="Label" parent="Sliders/Slider List/B Slider Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Sliders/Slider List/B Slider Panel/VBoxContainer"]
 margin_right = 458.0
-margin_bottom = 14.0
-text = "B"
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Sliders/Slider List/B Slider Panel/VBoxContainer/HBoxContainer"]
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 19.0
+text = "B:"
+
+[node name="SpinBox" type="SpinBox" parent="Sliders/Slider List/B Slider Panel/VBoxContainer/HBoxContainer"]
+margin_left = 17.0
+margin_right = 91.0
+margin_bottom = 24.0
+min_value = 1.0
+max_value = 200.0
+value = 1.0
+script = ExtResource( 11 )
 
 [node name="Slider" type="HSlider" parent="Sliders/Slider List/B Slider Panel/VBoxContainer"]
-margin_top = 18.0
+margin_top = 28.0
 margin_right = 458.0
-margin_bottom = 34.0
+margin_bottom = 44.0
 min_value = 1.0
 max_value = 200.0
 value = 1.0
 script = ExtResource( 6 )
 
 [node name="phi Slider Panel" type="PanelContainer" parent="Sliders/Slider List"]
-margin_top = 208.0
+margin_top = 248.0
 margin_right = 472.0
-margin_bottom = 300.0
+margin_bottom = 350.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Sliders/Slider List/phi Slider Panel"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 465.0
-margin_bottom = 85.0
+margin_bottom = 95.0
 
-[node name="Label" type="Label" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer"]
 margin_right = 458.0
-margin_bottom = 14.0
-text = "phi"
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer/HBoxContainer2"]
+margin_top = 5.0
+margin_right = 24.0
+margin_bottom = 19.0
+text = "phi:"
+
+[node name="SpinBox" type="SpinBox" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 28.0
+margin_right = 102.0
+margin_bottom = 24.0
+max_value = 2.0
+step = 0.01
+script = ExtResource( 9 )
+
+[node name="Label2" type="Label" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 106.0
+margin_top = 5.0
+margin_right = 169.0
+margin_bottom = 19.0
+text = "PI radians"
 
 [node name="Slider" type="HSlider" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer"]
-margin_top = 18.0
+margin_top = 28.0
 margin_right = 458.0
-margin_bottom = 34.0
+margin_bottom = 44.0
 max_value = 2.0
 step = 0.01
 script = ExtResource( 4 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer"]
-margin_top = 38.0
+margin_top = 48.0
 margin_right = 458.0
-margin_bottom = 78.0
+margin_bottom = 88.0
 
 [node name="Label" type="Label" parent="Sliders/Slider List/phi Slider Panel/VBoxContainer/HBoxContainer"]
 margin_top = 13.0
@@ -216,9 +292,19 @@ margin_bottom = 40.0
 [connection signal="draw" from="Curve Image/Path2D" to="Curve Image/Path2D" method="_on_Path2D_draw"]
 [connection signal="phi_changed" from="Curve Image/Path2D" to="Sliders/Slider List/phi Slider Panel/VBoxContainer/Slider" method="_on_Path2D_phi_changed"]
 [connection signal="timeout" from="Curve Image/Path2D/RotationTimer" to="Curve Image/Path2D" method="_on_RotationTimer_timeout"]
+[connection signal="value_changed" from="Sliders/Slider List/a Slider Panel/VBoxContainer/HBoxContainer/SpinBox" to="Sliders/Slider List/a Slider Panel/VBoxContainer/Slider" method="_on_SpinBox_value_changed"]
+[connection signal="value_changed" from="Sliders/Slider List/a Slider Panel/VBoxContainer/Slider" to="Sliders/Slider List/a Slider Panel/VBoxContainer/HBoxContainer/SpinBox" method="_on_Slider_value_changed"]
 [connection signal="value_changed" from="Sliders/Slider List/a Slider Panel/VBoxContainer/Slider" to="Curve Image/Path2D" method="_on_Slider1_value_changed"]
+[connection signal="value_changed" from="Sliders/Slider List/b Slider Panel/VBoxContainer/HBoxContainer/SpinBox" to="Sliders/Slider List/b Slider Panel/VBoxContainer/Slider" method="_on_SpinBox_value_changed"]
+[connection signal="value_changed" from="Sliders/Slider List/b Slider Panel/VBoxContainer/Slider" to="Sliders/Slider List/b Slider Panel/VBoxContainer/HBoxContainer/SpinBox" method="_on_Slider_value_changed"]
 [connection signal="value_changed" from="Sliders/Slider List/b Slider Panel/VBoxContainer/Slider" to="Curve Image/Path2D" method="_on_Slider2_value_changed"]
+[connection signal="value_changed" from="Sliders/Slider List/A Slider Panel/VBoxContainer/HBoxContainer/SpinBox" to="Sliders/Slider List/A Slider Panel/VBoxContainer/Slider" method="_on_SpinBox_value_changed"]
+[connection signal="value_changed" from="Sliders/Slider List/A Slider Panel/VBoxContainer/Slider" to="Sliders/Slider List/A Slider Panel/VBoxContainer/HBoxContainer/SpinBox" method="_on_Slider_value_changed"]
 [connection signal="value_changed" from="Sliders/Slider List/A Slider Panel/VBoxContainer/Slider" to="Curve Image/Path2D" method="_on_Slider3_value_changed"]
+[connection signal="value_changed" from="Sliders/Slider List/B Slider Panel/VBoxContainer/HBoxContainer/SpinBox" to="Sliders/Slider List/B Slider Panel/VBoxContainer/Slider" method="_on_SpinBox_value_changed"]
+[connection signal="value_changed" from="Sliders/Slider List/B Slider Panel/VBoxContainer/Slider" to="Sliders/Slider List/B Slider Panel/VBoxContainer/HBoxContainer/SpinBox" method="_on_Slider_value_changed"]
 [connection signal="value_changed" from="Sliders/Slider List/B Slider Panel/VBoxContainer/Slider" to="Curve Image/Path2D" method="_on_Slider4_value_changed"]
+[connection signal="value_changed" from="Sliders/Slider List/phi Slider Panel/VBoxContainer/HBoxContainer2/SpinBox" to="Sliders/Slider List/phi Slider Panel/VBoxContainer/Slider" method="_on_SpinBox_value_changed"]
+[connection signal="value_changed" from="Sliders/Slider List/phi Slider Panel/VBoxContainer/Slider" to="Sliders/Slider List/phi Slider Panel/VBoxContainer/HBoxContainer2/SpinBox" method="_on_Slider_value_changed"]
 [connection signal="value_changed" from="Sliders/Slider List/phi Slider Panel/VBoxContainer/Slider" to="Curve Image/Path2D" method="_on_Slider5_value_changed"]
 [connection signal="toggled" from="Sliders/Slider List/phi Slider Panel/VBoxContainer/HBoxContainer/CheckButton" to="Curve Image/Path2D/RotationTimer" method="_on_CheckButton_toggled"]

@@ -18,3 +18,7 @@ func _ready():
 
 func _on_Path2D_b_changed(new_b_value):
 	value = new_b_value
+
+
+func _on_SpinBox_value_changed(new_value):
+	value = new_value

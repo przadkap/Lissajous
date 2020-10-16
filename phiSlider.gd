@@ -19,3 +19,7 @@ func _ready():
 
 func _on_Path2D_phi_changed(new_phi_value):
 	value = new_phi_value
+
+
+func _on_SpinBox_value_changed(new_value):
+	value = new_value

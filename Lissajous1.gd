@@ -103,5 +103,5 @@ func _on_RotationTimer_timeout():
 
 
 
-func _on_Path2D_A_changed(new_A_value):
-	pass # Replace with function body.
+#func _on_Path2D_A_changed(new_A_value):
+#	pass # Replace with function body.
