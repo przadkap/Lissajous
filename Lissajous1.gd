@@ -50,7 +50,7 @@ func _ready():
 	set_sliders(param_values)
 #	_draw()
 
-func set_sliders(new_param_values):
+func set_sliders(_new_param_values):
 	emit_signal("A_changed", param_values["A"])
 	emit_signal("B_changed", param_values["B"])
 	emit_signal("a_changed", param_values["a"])
